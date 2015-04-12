@@ -46,13 +46,11 @@ scaleSpeed = 0.7f;
 
 
 
-function ScaleCircle(){
-transform.localScale += new Vector2(scaleSpeed,scaleSpeed)*Time.deltaTime;
-}
+
 
 function Update(){
 if(scaling == true){
-ScaleCircle();
+	transform.localScale += new Vector2(scaleSpeed,scaleSpeed)*Time.deltaTime;
 }
 }
 
