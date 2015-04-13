@@ -30,13 +30,13 @@ var currentSprite: Sprite = gameObject.GetComponent.<SpriteRenderer>().sprite;
 
 //fill rate dependant on colour of circle
 if(currentSprite == greenCirc){
-scaleSpeed = 1.5f;
+scaleSpeed = 1.5f; //1.5
 }
 else if(currentSprite == blueCirc){
-scaleSpeed = 1.2f;
+scaleSpeed = 1.2f; //1.2
 }
 else if(currentSprite == orangeCirc){
-scaleSpeed = 0.7f;
+scaleSpeed = 0.7f; //0.7
 }
 
 }//end of start fn
