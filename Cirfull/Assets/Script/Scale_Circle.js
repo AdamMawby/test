@@ -7,6 +7,7 @@ var blueCirc:Sprite;
 var greenCirc:Sprite;
 var orangeCirc:Sprite;
 
+
 private var scaleSpeed:float;
 
 //circle states
@@ -82,6 +83,8 @@ Debug.Log("AutoDestroy");
 }//end of oncollisionenter2d
 
 
+
+
 function OnMouseDown(){
 
 //perfect tap
@@ -89,6 +92,7 @@ if(filled == true && overflown ==false){
 scaling = false;
 Debug.Log("NICE");
 Destroy (transform.parent.gameObject,.5f);
+
 //award bonus points
 
 //premature tap

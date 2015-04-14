@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Start/StartScreen_01_adam.unity
+    path: Assets/Scenes/Start/StartScreen_02_adam.unity
   - enabled: 1
-    path: Assets/Scenes/Play/PlayScreen_06_adam.unity
+    path: Assets/Scenes/Play/PlayScreen_08_adam_timer_pause.unity

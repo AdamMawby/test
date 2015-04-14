@@ -8,6 +8,7 @@ TagManager:
   - Circ_Outline_Outer
   - Circ_Overflow
   - Circ_Outline
+  - Circle
   layers:
   - Default
   - TransparentFX
