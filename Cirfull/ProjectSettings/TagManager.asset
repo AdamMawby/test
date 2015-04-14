@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - circle1
   - Circ_Outline_Inner
   - Circ_Outline_Outer
   - Circ_Overflow
   - Circ_Outline
-  - Circle
   layers:
   - Default
   - TransparentFX

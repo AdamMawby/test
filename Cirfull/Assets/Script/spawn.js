@@ -1,6 +1,7 @@
 ﻿
 import System.Collections.Generic;
 
+
 var prefabCircle:GameObject;
 private var instCircle:GameObject;
 
@@ -19,23 +20,27 @@ circColours.Add(blueCirc);
 circColours.Add(orangeCirc);
 
 
+var circles = new Array();
 function Start () {
 //converts the current dimensions of the screen(pixels) to world dimensions (units) and stores it in a vector 3
 screenDem = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
 
-InstantiateCircle();
-firtCirc = true;
 }
 
+function PauseGame(){
 
-
-                 
-
-
+if(Time.timeScale == 1){
+pauseImage.SetActive(true);
+Time.timeScale = 0;
+}
+else{
+Time.timeScale = 1;
+pauseImage.SetActive(false);
+}
+}
+          
 //when called, fn creates a circle @ random position, random colour, and corresponding scale (to colour)
-function InstantiateCircle(){
-
-
+function InstantiateCircle(x, y){
 
 //determines a random x and y pos for the new circle within the screen boundaries
 var circPos:Vector2 = new Vector2(Random.Range(-screenDem.x+2.0f,screenDem.x-2.0f),Random.Range(-screenDem.y+2.0f,screenDem.y-2.0f));
@@ -50,55 +55,50 @@ instCircle.GetComponentInChildren.<SpriteRenderer>().sprite = circColours[Random
 
 //sets scale of circle depending on colour
 if(instCircle.GetComponentInChildren.<SpriteRenderer>().sprite == greenCirc){
-instCircle.transform.localScale = Vector3.one*1f;
+instCircle.transform.localScale = Vector3.one*0.5f;
  
 }
 else if(instCircle.GetComponentInChildren.<SpriteRenderer>().sprite == blueCirc){
-instCircle.transform.localScale = Vector3.one*0.75f; 
+instCircle.transform.localScale = Vector3.one*0.5f; 
 }
 else{
 instCircle.transform.localScale = Vector3.one*0.5f; 
 }
+
+return instCircle;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-//////////////////////////////////////////
-
-function PauseGame(){
-
-if(Time.timeScale == 1){
-pauseImage.SetActive(true);
-Time.timeScale = 0;
+function isOverlapping(x,y,r){
+	var pt = Vector2(x, y);
+	if(Physics2D.OverlapCircle(pt, r) == null){
+		return false;
+	}
+	else{
+		return true;
+	}
 }
-else{
-Time.timeScale = 1;
-pauseImage.SetActive(false);
-}
-}
-
-////////////////////////////////////////
-
-
 
 function Update () {
+var length = 4;
+var x : float;
+var y : float;
+var r = 3.6;
+circles.length = length;
 
-if(Input.GetKeyDown("space")){
-PauseGame();
+for(var i = 0; i < length; i++){
+
+	if (circles[i] == null){
+		do{
+			x = Random.Range(-screenDem.x+2.0f,screenDem.x-2.0f);
+			y = Random.Range(-screenDem.y+2.0f,screenDem.y-2.0f);
+		}while (isOverlapping(x,y,r) == true);
+			circles[i] = InstantiateCircle(x,y);
+		}
+		
+	}
+	
+	if(Input.GetKeyDown("space")){
+	PauseGame();
 }
 
-if(instCircle == null){
-InstantiateCircle();
-
-}
 }
