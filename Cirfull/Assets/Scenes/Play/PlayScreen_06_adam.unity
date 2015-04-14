@@ -265,7 +265,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabCircle: {fileID: 112928, guid: 5beeb74ba25280e448dd39f50c8d8066, type: 2}
+  pauseImage: {fileID: 1060846316}
   blueCirc: {fileID: 21300014, guid: fc9c931f4c71c19458b84ab0cd54c507, type: 3}
   greenCirc: {fileID: 21300016, guid: fc9c931f4c71c19458b84ab0cd54c507, type: 3}
   orangeCirc: {fileID: 21300012, guid: fc9c931f4c71c19458b84ab0cd54c507, type: 3}
+  screenDem: {x: 0, y: 0, z: 0}
+  firstCirc: 0
   circColours: []
