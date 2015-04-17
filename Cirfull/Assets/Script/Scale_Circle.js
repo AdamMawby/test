@@ -22,25 +22,25 @@ private var scaling:boolean;
 
 function Start () {
 scaling = true;
-transform.localScale.x = 0;	//Starts the circle as invisible
+transform.localScale.x = 0;
 transform.localScale.y = 0;
 
 
+// determines which sprite(colour) was selected
+var currentSprite: Sprite = gameObject.GetComponent.<SpriteRenderer>().sprite;
 
-var currentSprite: Sprite = gameObject.GetComponent.<SpriteRenderer>().sprite;		// determines which sprite(colour) was selected
-
-
+//fill rate dependant on colour of circle
 if(currentSprite == greenCirc){
 scaleSpeed = 1.5f;
 }
-else if(currentSprite == blueCirc){		//fill rate dependant on colour of circle
+else if(currentSprite == blueCirc){
 scaleSpeed = 1.2f;
 }
 else if(currentSprite == orangeCirc){
 scaleSpeed = 0.7f;
 }
 
-}	//end of start fn
+}//end of start fn
 
 
 
@@ -51,7 +51,7 @@ scaleSpeed = 0.7f;
 
 function Update(){
 if(scaling == true){
-	transform.localScale += new Vector2(scaleSpeed,scaleSpeed)*Time.deltaTime;		//Scales this circle based upon the scale rate
+	transform.localScale += new Vector2(scaleSpeed,scaleSpeed)*Time.deltaTime;
 }
 }
 
@@ -64,21 +64,21 @@ if(scaling == true){
 
 function OnTriggerEnter2D(coll: Collider2D):void{
 
-if(coll.gameObject.tag == "Circ_Outline_Inner"){		//Checks when the circle is perfectly filled
+if(coll.gameObject.tag == "Circ_Outline_Inner"){
 Debug.Log("TAP");
 filled = true;
 
 }
-else if(coll.gameObject.tag == "Circ_Outline_Outer"){		//Checks if the circle has overflown
+else if(coll.gameObject.tag == "Circ_Outline_Outer"){
 Debug.Log("OVERFLOW");
 overflown = true;
 
-//Application.LoadLevel("StartScreen_02_adam");		//Exits to main menu if one circle overflows (Death)
+//Application.LoadLevel("StartScreen_02_adam");
 }
 //late tap (overflown)
 else if(coll.gameObject.tag == "Circ_Overflow"){
 scaling = false;
-Destroy (transform.parent.gameObject,.5f);	//If the circle has overflown,destroy it in .5 seconds
+Destroy (transform.parent.gameObject,.5f);
 Debug.Log("AutoDestroy");
 }
 
@@ -89,16 +89,16 @@ Debug.Log("AutoDestroy");
 
 function OnMouseDown(){
 
-
+//perfect tap
 if(filled == true && overflown ==false){
 scaling = false;
 Debug.Log("NICE");
-Destroy (transform.parent.gameObject,.5f);		//perfect tap
+Destroy (transform.parent.gameObject,.5f);
 
-											//award bonus points
+//award bonus points
 
-
-}if(filled == false && overflown == false){		//premature tap
+//premature tap
+}if(filled == false && overflown == false){
 scaling = false;
 Destroy (transform.parent.gameObject);
 }

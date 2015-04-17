@@ -362,16 +362,6 @@ MonoBehaviour:
   orangeCirc: {fileID: 21300012, guid: fc9c931f4c71c19458b84ab0cd54c507, type: 3}
   circColours: []
   pauseImage: {fileID: 1758465866}
-  counterText: {fileID: 1689688039}
-  intTime: 0
-  minutes: 0
-  seconds: 0
-  fraction: 0
-  startTime: 0
-  length: 1
-  x: 0
-  y: 0
-  r: 1.79999995
 --- !u!1 &1474139959
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +445,7 @@ GameObject:
   - 224: {fileID: 1689688038}
   - 222: {fileID: 1689688040}
   - 114: {fileID: 1689688039}
+  - 114: {fileID: 1689688041}
   m_Layer: 5
   m_Name: timer numbers
   m_TagString: Untagged
@@ -504,13 +495,28 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 00:00:000
+  m_Text: '00: 12'
 --- !u!222 &1689688040
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1689688037}
+--- !u!114 &1689688041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689688037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc61c698f724b7c4baeb1fafb770af78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  counterText: {fileID: 1689688039}
+  seconds: 0
+  minutes: 0
+  milli: 0
 --- !u!1 &1758465866
 GameObject:
   m_ObjectHideFlags: 0
