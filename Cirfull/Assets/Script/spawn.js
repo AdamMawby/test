@@ -98,7 +98,7 @@ PauseGame();
 }
 
 
-var length = 4;
+var length = 3;
 var x : float;
 var y : float;
 var r = 1.80;
@@ -109,10 +109,17 @@ circles.length = length;
 for(var i = 0; i < length; i++){
 
 	if (circles[i] == null){
+		var timeOut = 0;
 		do{
+			timeOut++;
+			if (timeOut > 10){
+			break;
+			}
 		    
 			x = Random.Range(-screenDem.x+1.0f,screenDem.x-1.0f);
 			y = Random.Range(-screenDem.y+1.0f,screenDem.y-2.0f);
+			
+			
 		}while (isOverlapping(x,y,r) == true);
 		 
 			

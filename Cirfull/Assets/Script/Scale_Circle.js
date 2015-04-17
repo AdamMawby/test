@@ -72,6 +72,8 @@ filled = true;
 else if(coll.gameObject.tag == "Circ_Outline_Outer"){
 Debug.Log("OVERFLOW");
 overflown = true;
+
+//Application.LoadLevel("StartScreen_02_adam");
 }
 //late tap (overflown)
 else if(coll.gameObject.tag == "Circ_Overflow"){
