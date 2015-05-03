@@ -24,13 +24,15 @@ scaleSpeed = 1.5f;
 //Circle Collider vs. Edge colliders
 
 function OnTriggerEnter2D(coll: Collider2D):void{
-
+filled = false;
+overflown = false;
 if(coll.gameObject.tag == "Circ_Outline_Inner"){		//Checks when the circle is perfectly filled
 filled = true;
 
 }
 else if(coll.gameObject.tag == "Circ_Outline_Outer"){		//Checks if the circle has overflown
 overflown = true;
+
 
 //Application.LoadLevel("StartScreen_02_adam");		//Exits to main menu if one circle overflows (Death)
 }
@@ -39,11 +41,14 @@ else if(coll.gameObject.tag == "Circ_Overflow"){
 transform.localScale = Vector3(0,0,0);	//If the circle has overflown,destroy it in .5 seconds
 }
 
+
 }//end of oncollisionenter2d
 
 function OnMouseDown(){
 
 if(filled == true && overflown ==false){
+filled = false;
+overflown = false;
 transform.localScale = Vector3(0,0,0);//perfect tap	
 Incremental_Processes.points += perfClickWorth;									
 }
@@ -59,13 +64,15 @@ GetComponent.<ParticleSystem>().Play();
 var clickWorth;
 var perfClickWorth;
 function Update(){
+
+Debug.Log(filled + "-Filled?");
+Debug.Log(overflown + "-Overflown?");
 clickWorth = Incremental_Processes.clickWorth;
 perfClickWorth = Incremental_Processes.perfClickWorth;
 if(scaling == true){
 	transform.localScale += new Vector2(scaleSpeed,scaleSpeed)*Time.deltaTime;		//Scales this circle based upon the scale rate
 }
-filled = false;
-overflown = false;
+
 }
 
 

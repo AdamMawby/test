@@ -19,6 +19,7 @@ circColours.Add(orangeCirc);
 //TIMING VARIABLES
 var counterText: Text;
 
+
 function FormatPoints (points){
     pointText = String.Format ("{000}", points);		//Formats the text object with the new data every update
     return pointText;
@@ -46,5 +47,5 @@ return instCircle;
 
 
 function Update () {																	
-counterText.text = FormatPoints (Incremental_Processes.points);	// Format the time 
+counterText.text = FormatPoints (Mathf.Round(Incremental_Processes.points * 10)/10);	// Format the time 
 }
