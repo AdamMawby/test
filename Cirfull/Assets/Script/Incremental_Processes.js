@@ -36,7 +36,7 @@ Debug.Log("NOT ENOUGH POINTS");
 }
 
 function upgradeFillSpeed(){
-if (points >= 1){
+if (points >= 10){
 points -= 10;
 fillSpeed += 0.1;
 }
