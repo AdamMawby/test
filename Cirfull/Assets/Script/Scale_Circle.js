@@ -15,7 +15,7 @@ particles = GetComponent(ParticleEmitter);
 scaling = true;
 transform.localScale.x = 0;	//Starts the circle as invisible
 transform.localScale.y = 0;
-scaleSpeed = 1.5f;
+
 
 
 
@@ -49,11 +49,11 @@ function OnMouseDown(){
 if(filled == true && overflown ==false){
 filled = false;
 overflown = false;
-transform.localScale = Vector3(0,0,0);//perfect tap	
+//transform.localScale = Vector3(0,0,0);//perfect tap	
 Incremental_Processes.points += perfClickWorth;									
 }
 if(filled == false && overflown == false){		//premature tap
-transform.localScale = Vector3(0,0,0);
+//transform.localScale = Vector3(0,0,0);
 Incremental_Processes.points += clickWorth;
 GetComponent.<ParticleSystem>().Play();
 
@@ -64,13 +64,12 @@ GetComponent.<ParticleSystem>().Play();
 var clickWorth;
 var perfClickWorth;
 function Update(){
-
-Debug.Log(filled + "-Filled?");
-Debug.Log(overflown + "-Overflown?");
+scaleSpeed = Incremental_Processes.fillSpeed;
 clickWorth = Incremental_Processes.clickWorth;
 perfClickWorth = Incremental_Processes.perfClickWorth;
 if(scaling == true){
 	transform.localScale += new Vector2(scaleSpeed,scaleSpeed)*Time.deltaTime;		//Scales this circle based upon the scale rate
+	Debug.Log(scaleSpeed);
 }
 
 }
