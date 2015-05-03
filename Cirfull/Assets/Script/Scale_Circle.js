@@ -8,8 +8,10 @@ private var scaleSpeed:float;
 private var filled:boolean = false;
 private var overflown:boolean = false;
 private var scaling:boolean;
+private var particles : ParticleEmitter;
 
 function Start () {
+particles = GetComponent(ParticleEmitter);
 scaling = true;
 transform.localScale.x = 0;	//Starts the circle as invisible
 transform.localScale.y = 0;
@@ -24,12 +26,10 @@ scaleSpeed = 1.5f;
 function OnTriggerEnter2D(coll: Collider2D):void{
 
 if(coll.gameObject.tag == "Circ_Outline_Inner"){		//Checks when the circle is perfectly filled
-Debug.Log("TAP");
 filled = true;
 
 }
 else if(coll.gameObject.tag == "Circ_Outline_Outer"){		//Checks if the circle has overflown
-Debug.Log("OVERFLOW");
 overflown = true;
 
 //Application.LoadLevel("StartScreen_02_adam");		//Exits to main menu if one circle overflows (Death)
@@ -37,7 +37,6 @@ overflown = true;
 //late tap (overflown)
 else if(coll.gameObject.tag == "Circ_Overflow"){
 transform.localScale = Vector3(0,0,0);	//If the circle has overflown,destroy it in .5 seconds
-Debug.Log("AutoDestroy");
 }
 
 }//end of oncollisionenter2d
@@ -45,14 +44,13 @@ Debug.Log("AutoDestroy");
 function OnMouseDown(){
 
 if(filled == true && overflown ==false){
-Debug.Log("NICE");
 transform.localScale = Vector3(0,0,0);//perfect tap	
-Incremental_Processes.points += perfClickWorth;										
+Incremental_Processes.points += perfClickWorth;									
 }
 if(filled == false && overflown == false){		//premature tap
 transform.localScale = Vector3(0,0,0);
 Incremental_Processes.points += clickWorth;
-Debug.Log(Incremental_Processes.points);
+GetComponent.<ParticleSystem>().Play();
 
 }
 
