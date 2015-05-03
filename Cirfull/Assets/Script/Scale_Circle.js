@@ -1,12 +1,6 @@
-﻿
-
- 
-
-
-var blueCirc:Sprite;
+﻿var blueCirc:Sprite;
 var greenCirc:Sprite;
 var orangeCirc:Sprite;
-
 
 private var scaleSpeed:float;
 
@@ -15,50 +9,15 @@ private var filled:boolean = false;
 private var overflown:boolean = false;
 private var scaling:boolean;
 
-
-
-
-
-
 function Start () {
 scaling = true;
 transform.localScale.x = 0;	//Starts the circle as invisible
 transform.localScale.y = 0;
-
-
-
-var currentSprite: Sprite = gameObject.GetComponent.<SpriteRenderer>().sprite;		// determines which sprite(colour) was selected
-
-
-if(currentSprite == greenCirc){
 scaleSpeed = 1.5f;
-}
-else if(currentSprite == blueCirc){		//fill rate dependant on colour of circle
-scaleSpeed = 1.2f;
-}
-else if(currentSprite == orangeCirc){
-scaleSpeed = 0.7f;
-}
+
+
 
 }	//end of start fn
-
-
-
-
-
-
-
-
-function Update(){
-if(scaling == true){
-	transform.localScale += new Vector2(scaleSpeed,scaleSpeed)*Time.deltaTime;		//Scales this circle based upon the scale rate
-}
-}
-
-
-
-
-
 
 //Circle Collider vs. Edge colliders
 
@@ -77,33 +36,41 @@ overflown = true;
 }
 //late tap (overflown)
 else if(coll.gameObject.tag == "Circ_Overflow"){
-scaling = false;
-Destroy (transform.parent.gameObject,.5f);	//If the circle has overflown,destroy it in .5 seconds
+transform.localScale = Vector3(0,0,0);	//If the circle has overflown,destroy it in .5 seconds
 Debug.Log("AutoDestroy");
 }
 
 }//end of oncollisionenter2d
 
-
-
-
 function OnMouseDown(){
 
-
 if(filled == true && overflown ==false){
-scaling = false;
 Debug.Log("NICE");
-Destroy (transform.parent.gameObject,.5f);		//perfect tap
+transform.localScale = Vector3(0,0,0);//perfect tap	
+Incremental_Processes.points += perfClickWorth;										
+}
+if(filled == false && overflown == false){		//premature tap
+transform.localScale = Vector3(0,0,0);
+Incremental_Processes.points += clickWorth;
+Debug.Log(Incremental_Processes.points);
 
-											//award bonus points
-
-
-}if(filled == false && overflown == false){		//premature tap
-scaling = false;
-Destroy (transform.parent.gameObject);
 }
 
+
 }
+var clickWorth;
+var perfClickWorth;
+function Update(){
+clickWorth = Incremental_Processes.clickWorth;
+perfClickWorth = Incremental_Processes.perfClickWorth;
+if(scaling == true){
+	transform.localScale += new Vector2(scaleSpeed,scaleSpeed)*Time.deltaTime;		//Scales this circle based upon the scale rate
+}
+filled = false;
+overflown = false;
+}
+
+
 
 
 
